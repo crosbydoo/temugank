@@ -1,0 +1,45 @@
+@import 'tailwindcss';
+
+/**
+ * Design tokens live here so Tailwind utilities stay readable (`bg-bg-deep`).
+ * When a backend arrives, keep tokens stable and swap data sources only.
+ */
+@theme {
+  --color-bg-deep: #0d0d0d;
+  --color-bg-elevated: #111111;
+  --color-paper: #f5f1e8;
+  --color-stone: #b7b0a3;
+  --color-sage: #7a8d73;
+  --color-ink-muted: color-mix(in srgb, var(--color-paper) 55%, transparent);
+
+  --font-display: 'IBM Plex Mono', ui-monospace, monospace;
+  /** Swiss-style logotype (Satisfy-like): bold sans, tight tracking — not mono. */
+  --font-wordmark: 'Inter', 'Helvetica Neue', Helvetica, Arial, ui-sans-serif,
+    system-ui, sans-serif;
+  --font-body: 'Newsreader', ui-serif, Georgia, 'Times New Roman', serif;
+
+  --tracking-ultra: 0.35em;
+  --tracking-wordmark: -0.045em;
+  --tracking-wide-editorial: 0.12em;
+
+  --shadow-soft: 0 24px 80px rgb(0 0 0 / 0.45);
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    font-family: var(--font-body);
+    background-color: var(--color-bg-deep);
+    color: var(--color-paper);
+    padding-left: env(safe-area-inset-left, 0px);
+    padding-right: env(safe-area-inset-right, 0px);
+  }
+
+  ::selection {
+    background-color: color-mix(in srgb, var(--color-sage) 35%, black);
+    color: var(--color-paper);
+  }
+}
