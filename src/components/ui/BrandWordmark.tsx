@@ -1,7 +1,7 @@
 import type { HTMLAttributes } from 'react'
 
-import { SITE } from '@/constants/site'
-import { cn } from '@/utils/cn'
+import { SITE } from '@/config/site'
+import { cn } from '@/lib/cn'
 
 export type BrandWordmarkProps = HTMLAttributes<HTMLHeadingElement>
 

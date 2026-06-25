@@ -1,0 +1,64 @@
+---
+export const prerender = false
+
+import Layout from '@/layouts/Layout.astro'
+import { DESK_DOCS } from '@/config/desk'
+import { getDb } from '@/lib/db/client'
+import { listDocLinks } from '@/lib/db/docLinks'
+
+const db = getDb()
+
+const guides = db
+  ? (await listDocLinks(db)).map((link) => ({
+      href: link.href,
+      label: link.label,
+      description: link.description,
+    }))
+  : DESK_DOCS.filter((doc) => doc.href !== '/docs')
+---
+
+<Layout title="Documentation | Temugank" noIndex>
+  <div class="min-h-dvh bg-bg-deep text-paper">
+    <header class="border-b border-paper/10 px-4 py-4 sm:px-6">
+      <div class="mx-auto flex max-w-3xl items-center justify-between gap-4">
+        <a
+          href="/desk/overview"
+          class="font-display text-[0.58rem] uppercase tracking-[var(--tracking-ultra)] text-stone no-underline hover:text-paper"
+        >
+          ← Desk
+        </a>
+        <a
+          href="/"
+          class="font-wordmark text-sm font-extrabold uppercase tracking-[var(--tracking-wordmark)] text-paper no-underline"
+        >
+          Temugank
+        </a>
+      </div>
+    </header>
+    <main class="mx-auto max-w-3xl px-4 py-10 sm:px-6 sm:py-14">
+      <p class="font-display text-[0.58rem] uppercase tracking-[var(--tracking-ultra)] text-stone">
+        Internal documentation
+      </p>
+      <h1 class="mt-2 font-display text-2xl uppercase tracking-[var(--tracking-wide-editorial)] sm:text-3xl">
+        Guides
+      </h1>
+      <ul class="mt-8 divide-y divide-paper/10 border-t border-paper/10">
+        {
+          guides.map((doc) => (
+            <li>
+              <a
+                href={doc.href}
+                class="block py-5 no-underline transition-colors hover:bg-paper/[0.02]"
+              >
+                <span class="font-display text-sm uppercase tracking-[var(--tracking-wide-editorial)] text-paper">
+                  {doc.label}
+                </span>
+                <span class="mt-1 block font-body text-sm text-stone">{doc.description}</span>
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+    </main>
+  </div>
+</Layout>

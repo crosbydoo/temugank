@@ -1,0 +1,12 @@
+---
+export const prerender = false
+
+import Layout from '@/layouts/Layout.astro'
+import { DeskApp } from '@/components/islands/desk/DeskApp'
+
+const view = Astro.params.view ?? 'overview'
+---
+
+<Layout title="Desk | Temugank" noIndex>
+  <DeskApp client:load initialView={view} />
+</Layout>

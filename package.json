@@ -4,32 +4,43 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "dev": "vite",
-    "build": "tsc -b && vite build",
+    "dev": "astro dev",
+    "build": "astro check && astro build",
+    "preview": "wrangler pages dev dist --local",
+    "db:migrate:local": "wrangler d1 migrations apply temugank-db --local",
+    "db:migrate:remote": "wrangler d1 migrations apply temugank-db --remote",
+    "db:types": "wrangler types",
     "lint": "eslint .",
-    "preview": "vite preview"
+    "astro": "astro"
   },
   "dependencies": {
-    "framer-motion": "^12.38.0",
-    "react": "^19.2.6",
-    "react-dom": "^19.2.6",
-    "react-router-dom": "^7.15.0"
+    "@astrojs/check": "^0.9.9",
+    "@astrojs/cloudflare": "^13.7.0",
+    "@astrojs/react": "^5.0.7",
+    "astro": "^6.4.8",
+    "framer-motion": "^12.40.0",
+    "jose": "^6.2.3",
+    "nanoid": "^5.1.15",
+    "react": "^19.2.7",
+    "react-dom": "^19.2.7"
   },
   "devDependencies": {
+    "@cloudflare/workers-types": "^4.20260620.1",
     "@eslint/js": "^10.0.1",
-    "@tailwindcss/vite": "^4.3.0",
+    "@tailwindcss/vite": "^4.3.1",
     "@types/node": "^24.12.3",
-    "@types/react": "^19.2.14",
+    "@types/react": "^19.2.17",
     "@types/react-dom": "^19.2.3",
-    "@vitejs/plugin-react": "^6.0.1",
     "eslint": "^10.3.0",
+    "eslint-plugin-astro": "^1.7.0",
     "eslint-plugin-react-hooks": "^7.1.1",
-    "eslint-plugin-react-refresh": "^0.5.2",
     "globals": "^17.6.0",
-    "rolldown": "^1.0.0",
-    "tailwindcss": "^4.3.0",
+    "tailwindcss": "^4.3.1",
     "typescript": "~6.0.2",
     "typescript-eslint": "^8.59.2",
-    "vite": "^8.0.12"
+    "wrangler": "^4.103.0"
+  },
+  "overrides": {
+    "vite": "^7"
   }
 }

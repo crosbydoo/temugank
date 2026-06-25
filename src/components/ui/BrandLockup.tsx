@@ -1,8 +1,8 @@
 import type { AnchorHTMLAttributes } from 'react'
 
 import { BrandWordmark } from '@/components/ui/BrandWordmark'
-import { SITE } from '@/constants/site'
-import { cn } from '@/utils/cn'
+import { SITE } from '@/config/site'
+import { cn } from '@/lib/cn'
 
 /** Same scale as main navbar — only ink changes for paper vs dark chrome. */
 const wordmarkNavSizes =

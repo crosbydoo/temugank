@@ -1,0 +1,36 @@
+---
+export const prerender = false
+
+import Layout from '@/layouts/Layout.astro'
+import PageLayout from '@/components/astro/PageLayout.astro'
+import { HeroSection } from '@/components/islands/sections/HeroSection'
+import { AboutSection } from '@/components/islands/sections/AboutSection'
+import { RunsSection } from '@/components/islands/sections/RunsSection'
+import { GallerySection } from '@/components/islands/sections/GallerySection'
+import { JournalSection } from '@/components/islands/sections/JournalSection'
+import { getHomePageData } from '@/lib/content/getHomePageData'
+import { getDb } from '@/lib/db/client'
+
+const db = getDb()
+const {
+  manifestoBlocks,
+  philosophyStatements,
+  upcomingRuns,
+  journalArticles,
+  galleryItems,
+} = await getHomePageData(db)
+---
+
+<Layout>
+  <PageLayout>
+    <HeroSection client:load />
+    <AboutSection
+      client:visible
+      manifestoBlocks={manifestoBlocks}
+      philosophyStatements={philosophyStatements}
+    />
+    <RunsSection client:visible upcomingRuns={upcomingRuns} />
+    <GallerySection galleryItems={galleryItems} />
+    <JournalSection client:visible journalArticles={journalArticles} />
+  </PageLayout>
+</Layout>

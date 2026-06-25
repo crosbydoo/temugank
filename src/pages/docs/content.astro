@@ -1,0 +1,17 @@
+---
+import fs from 'node:fs'
+import path from 'node:path'
+
+import DocLayout from '@/layouts/DocLayout.astro'
+import { renderMarkdown } from '@/lib/docs/renderMarkdown'
+
+const source = fs.readFileSync(
+  path.join(process.cwd(), 'docs/CONTENT.md'),
+  'utf-8',
+)
+const html = renderMarkdown(source)
+---
+
+<DocLayout title="Content guide">
+  <article set:html={html} />
+</DocLayout>

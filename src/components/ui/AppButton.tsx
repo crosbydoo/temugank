@@ -1,6 +1,6 @@
 import type { ButtonHTMLAttributes, ReactNode } from 'react'
 
-import { cn } from '@/utils/cn'
+import { cn } from '@/lib/cn'
 
 type ButtonVariant = 'primary' | 'ghost'
 

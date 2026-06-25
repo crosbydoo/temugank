@@ -1,0 +1,123 @@
+---
+import Layout from '@/layouts/Layout.astro'
+
+interface Props {
+  title: string
+  backHref?: string
+  backLabel?: string
+}
+
+const {
+  title,
+  backHref = '/docs',
+  backLabel = '← Docs',
+} = Astro.props
+---
+
+<Layout title={`${title} | Temugank`} noIndex>
+  <div class="min-h-dvh bg-bg-deep text-paper">
+    <header class="border-b border-paper/10 px-4 py-4 sm:px-6">
+      <div class="mx-auto flex max-w-3xl items-center justify-between gap-4">
+        <a
+          href={backHref}
+          class="font-display text-[0.58rem] uppercase tracking-[var(--tracking-ultra)] text-stone no-underline hover:text-paper"
+        >
+          {backLabel}
+        </a>
+        <a
+          href="/desk"
+          class="font-display text-[0.58rem] uppercase tracking-[var(--tracking-ultra)] text-stone no-underline hover:text-paper"
+        >
+          Desk
+        </a>
+      </div>
+    </header>
+    <main class="doc-content mx-auto max-w-3xl px-4 py-10 sm:px-6 sm:py-14">
+      <slot />
+    </main>
+  </div>
+</Layout>
+
+<style is:global>
+  .doc-content {
+    font-family: var(--font-body);
+    line-height: 1.65;
+    color: color-mix(in srgb, var(--color-paper) 88%, transparent);
+  }
+
+  .doc-content h1 {
+    font-family: var(--font-display);
+    font-size: 1.5rem;
+    text-transform: uppercase;
+    letter-spacing: var(--tracking-wide-editorial);
+    color: var(--color-paper);
+    margin-bottom: 1.5rem;
+  }
+
+  .doc-content h2 {
+    font-family: var(--font-display);
+    font-size: 1rem;
+    text-transform: uppercase;
+    letter-spacing: var(--tracking-wide-editorial);
+    color: var(--color-paper);
+    margin-top: 2rem;
+    margin-bottom: 0.75rem;
+  }
+
+  .doc-content h3 {
+    font-family: var(--font-display);
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: var(--tracking-ultra);
+    color: var(--color-stone);
+    margin-top: 1.5rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .doc-content p,
+  .doc-content li {
+    margin-bottom: 0.75rem;
+    font-size: 0.95rem;
+  }
+
+  .doc-content ul,
+  .doc-content ol {
+    margin: 0.75rem 0 1rem 1.25rem;
+  }
+
+  .doc-content code {
+    font-family: var(--font-display);
+    font-size: 0.85em;
+    color: var(--color-sage);
+  }
+
+  .doc-content pre {
+    overflow-x: auto;
+    border: 1px solid color-mix(in srgb, var(--color-paper) 10%, transparent);
+    background: color-mix(in srgb, var(--color-bg-elevated) 80%, transparent);
+    padding: 1rem;
+    margin: 1rem 0 1.25rem;
+    font-family: var(--font-display);
+    font-size: 0.72rem;
+    line-height: 1.55;
+    white-space: pre-wrap;
+  }
+
+  .doc-content a {
+    color: var(--color-sage);
+  }
+
+  .doc-content table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 1rem 0;
+    font-size: 0.875rem;
+  }
+
+  .doc-content th,
+  .doc-content td {
+    border: 1px solid color-mix(in srgb, var(--color-paper) 10%, transparent);
+    padding: 0.5rem 0.75rem;
+    text-align: left;
+  }
+</style>

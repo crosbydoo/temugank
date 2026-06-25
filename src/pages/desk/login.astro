@@ -1,0 +1,20 @@
+---
+import Layout from '@/layouts/Layout.astro'
+import { LoginForm } from '@/components/islands/desk/LoginForm'
+---
+
+<Layout title="Sign in | Temugank Desk" noIndex>
+  <div class="flex min-h-dvh flex-col bg-bg-deep text-paper">
+    <header class="border-b border-paper/10 px-4 py-4 sm:px-6">
+      <a
+        href="/"
+        class="font-wordmark text-sm font-extrabold uppercase tracking-[var(--tracking-wordmark)] text-paper no-underline"
+      >
+        Temugank
+      </a>
+    </header>
+    <main class="flex flex-1 items-center px-4 py-10 sm:px-6">
+      <LoginForm client:load />
+    </main>
+  </div>
+</Layout>

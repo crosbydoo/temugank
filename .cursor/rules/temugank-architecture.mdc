@@ -1,0 +1,48 @@
+---
+description: Temugank four-layer architecture and folder conventions for Astro + React islands
+alwaysApply: true
+---
+
+# Temugank Architecture
+
+Follow the four-layer structure. Full docs: `docs/ARCHITECTURE.md`.
+
+## Layers
+
+```
+config/ + content/     →  what (data)
+lib/ + types/          →  logic (no UI)
+pages/ + layouts/      →  routes (thin orchestrators)
+components/            →  UI (astro = static, islands = React)
+```
+
+## Folder rules
+
+| Path | Contains |
+|------|----------|
+| `src/config/` | Site constants: nav, brand, section IDs |
+| `src/content/` | JSON content entries |
+| `src/lib/content/` | `getHomePageData()` and page loaders |
+| `src/lib/motion/` | Framer variants, transitions, reduced-motion hook |
+| `src/lib/cn.ts` | className helper |
+| `src/components/astro/` | Zero-JS `.astro` components |
+| `src/components/islands/` | React components (require `client:*`) |
+| `src/components/ui/` | Shared presentational React primitives |
+
+## When editing code
+
+- Pages fetch content via `lib/content/` helpers — not inline `getCollection()` maps
+- Islands receive data as props — no content fetching inside React
+- Prefer `.astro` over React; use islands only for interactivity or motion
+- Editable copy goes in `content/` or `config/`, never hardcoded in components
+- Use `@/` import alias for all src imports
+
+## Hydration
+
+- `client:load` — header, hero (above the fold)
+- `client:visible` — animated sections below the fold
+- Never import a React island without a `client:*` directive
+
+## Skill
+
+For detailed workflows and checklists, read `.cursor/skills/temugank-project/SKILL.md`.

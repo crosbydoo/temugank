@@ -1,6 +1,6 @@
 import type { AnchorHTMLAttributes, ReactNode } from 'react'
 
-import { cn } from '@/utils/cn'
+import { cn } from '@/lib/cn'
 
 export interface TextCtaProps extends AnchorHTMLAttributes<HTMLAnchorElement> {
   children: ReactNode

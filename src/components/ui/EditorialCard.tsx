@@ -1,6 +1,6 @@
 import type { HTMLAttributes, ReactNode } from 'react'
 
-import { cn } from '@/utils/cn'
+import { cn } from '@/lib/cn'
 
 export interface EditorialCardProps extends HTMLAttributes<HTMLElement> {
   as?: 'article' | 'div'

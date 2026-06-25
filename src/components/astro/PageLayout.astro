@@ -1,0 +1,12 @@
+---
+import SiteFooter from '@/components/astro/SiteFooter.astro'
+import { SiteHeader } from '@/components/islands/SiteHeader'
+---
+
+<div class="min-h-dvh bg-bg-deep text-paper">
+  <SiteHeader client:load />
+  <main class="min-h-0">
+    <slot />
+  </main>
+  <SiteFooter />
+</div>
